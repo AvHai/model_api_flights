@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+env/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+*.tmp
+
+# IDE/Editor configs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled
+*.pyc
+
+# Optional: Exclude large raw data (if you create them later)
+artifacts/
