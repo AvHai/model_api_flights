@@ -23,11 +23,10 @@ class PredictPipeline:
             probabilities: Array of delay probabilities
         """
         try:
-            BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # pipeline directory
-            ROOT_DIR = os.path.dirname(BASE_DIR)  # project root
+            BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-            model_path = os.path.join(ROOT_DIR, "model.pkl")
-            preprocessor_path = os.path.join(ROOT_DIR, "preprocessor.pkl")
+            model_path = os.path.join(BASE_DIR, "model.pkl")
+            preprocessor_path = os.path.join(BASE_DIR, "preprocessor.pkl")
             
             logging.info("Loading model and preprocessor...")
             print("Before Loading")
