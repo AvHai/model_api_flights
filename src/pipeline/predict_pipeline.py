@@ -23,7 +23,7 @@ class PredictPipeline:
             probabilities: Array of delay probabilities
         """
         try:
-            BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
             model_path = os.path.join(BASE_DIR, "model.pkl")
             preprocessor_path = os.path.join(BASE_DIR, "preprocessor.pkl")
