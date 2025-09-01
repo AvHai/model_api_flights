@@ -6,3 +6,4 @@ joblib
 numpy
 pydantic
 xgboost
+google.generativeai

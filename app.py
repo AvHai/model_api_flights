@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Query
+import os
+from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+import google.generativeai as genai
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -388,5 +390,25 @@ def predict_flight(data: FlightRequest):
     except CustomException as e:
         return JSONResponse(content={"status": "error", "message": str(e)}, status_code=400)
     
-    
-    
+# ================== API 4: ChatBot ==================    
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY environment variable is required")
+
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel('gemini-2.5-flash')
+
+# Request/Response models
+class ChatRequest(BaseModel):
+    message: str
+
+class ChatResponse(BaseModel):
+    response: str
+
+@app.post("/chat")
+async def chat(request: ChatRequest):
+    try:
+        response = model.generate_content(request.message)
+        return ChatResponse(response=response.text)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
