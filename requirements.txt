@@ -5,5 +5,3 @@ scikit-learn
 joblib
 numpy
 pydantic
-pickle
-sys
